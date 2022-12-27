@@ -1,0 +1,89 @@
+server creation-using express
+-------------
+install express
+
+1.import express
+
+2.create an app using express
+
+3.create port number (3000)
+
+4.create request according to our project
+
+nodemon server
+----------
+-npm i -g nodemon
+
+user authentication using express
+----------------------------------------
+-JWT Token(jason web Token)
+--------------------------------
+jsonwebtoken -library 
+installing-npm i jsonwebtoken
+sign()-method used for generate token
+verify()-methods to verify jwt tokens
+
+
+middlewares
+-----------------
+middlewares have the capacity to control server request
+its a function with three arguments  (request,response,next)
+
+-two types of middlewares
+    1.Application specified middlewares
+    2.Router specific middlewares
+
+solving run-time errors in js
+------------------------------
+
+they are unexpected errors.
+---------------------------------
+
+try and catch are used
+
+try{
+    error causing code
+}
+catch{
+    solution
+}
+
+
+mongoDB
+----------------
+-mongoDB server must be installed
+-shell commands in mongoDB
+
+    -to see databases 
+        -> show dbs
+    
+    -open particular databases
+        ->use database_name
+
+    -view collections inside database
+        ->show collections
+    
+    - to view datas inside collections
+        -> db.collection_name.find()
+
+    - to view any single data inside collections
+        -> db.collection_name.findOne({unique data to identify})
+
+    -to insert new data
+        ->db.collection_name.insertOne({data})
+
+    -to view any single data according to a condition
+        ->db.collection_name.findOne({condition}) single data
+        ->db.collection_name.find({condition}) single data
+
+    -delete 
+        -delete single data
+            ->db.collection_name.deleteOne({data})
+
+            -delete count=number
+            -delete count=0 if nothing deleted
+
+    -update
+        -db.collection_name.updateOne({data to be uodated},{new data})
+        eg:db.collection_name.updateOne({uname:'anu'},{uname:'anu v'})
+        
