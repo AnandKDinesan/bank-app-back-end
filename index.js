@@ -1,13 +1,20 @@
+//import cors
+const cors=require('cors')
+
 //import dataService file from service folder
 const dataService= require('./Service/dataservice')
 
 //import express
 const express=require('express')
+// const {json}=require('express')
 
 //create app
 
 const app=express()
 
+//connect frontend
+
+app.use(cors({origin:'http://localhost:4200'}))
 //import jsonwebtokent
 
 const jwt=require('jsonwebtoken')
@@ -37,9 +44,7 @@ app.use(express.json())
 // app.get('/',(req,res)=>{res.send('Get method checking.....')})
 
 //set port
-app.listen(3000,()=>{
-    console.log("Server satrted at port number 3000");
-})
+
 
 //request
 
@@ -57,40 +62,58 @@ app.listen(3000,()=>{
 
 //register
 app.post('/register',(req,res)=>{
-   const result= dataService.register(req.body.acno,req.body.uname,req.body.psw)
-   
+    dataService.register(req.body.acno,req.body.uname,req.body.psw).then(result=>{
     res.status(result.statusCode).json(result)
+   })
+   
+    
     console.log(req.body);
 })
 
 //login
 app.post('/login',(req,res)=>{
-    const result= dataService.login(req.body.acno,req.body.psw)
-    
-     res.status(result.statusCode).json(result)
-     console.log(req.body);
- })
+    const result= dataService.login(req.body.acno,req.body.psw).then(result=>{
+        res.status(result.statusCode).json(result)
+        console.log(req.body);
+    })
+})
 
  //deposit
  app.post('/deposit',jwtmiddleware,(req,res)=>{
-    const result= dataService.deposit(req.body.acno,req.body.psw,req.body.amount)
+    const result= dataService.deposit(req.body.acno,req.body.psw,req.body.amount).then(result=>{
+    res.status(result.statusCode).json(result)
+    console.log(req.body);
+    })
     
-     res.status(result.statusCode).json(result)
-     console.log(req.body);
+    
  })
 
  //withdraw
  app.post('/withdraw',jwtmiddleware,(req,res)=>{
-    const result= dataService.withdraw(req.body.acno,req.body.psw,req.body.amount)
+    const result= dataService.withdraw(req.body.acno,req.body.psw,req.body.amount).then(result=>{
+        res.status(result.statusCode).json(result)
+        console.log(req.body);
+    })
     
-     res.status(result.statusCode).json(result)
-     console.log(req.body);
+     
  })
 
  //transaction details
  app.post('/transaction',jwtmiddleware,(req,res)=>{
-    const result= dataService.gettransaction(req.body.acno)
-    
-     res.status(result.statusCode).json(result)
+    const result= dataService.gettransaction(req.body.acno).then(result=>{
+        res.status(result.statusCode).json(result)
      console.log(req.body);
+    })
+    
+     
  })
+
+//delete               //params
+app.delete('/deleteacc/:acno',jwtmiddleware,(req,res)=>{
+    dataService.acdelete(req.params.acno).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
+})
+ app.listen(3001,()=>{
+    console.log("Server satrted at port number 3001");
+})

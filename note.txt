@@ -87,3 +87,26 @@ mongoDB
         -db.collection_name.updateOne({data to be uodated},{new data})
         eg:db.collection_name.updateOne({uname:'anu'},{uname:'anu v'})
         
+
+server mongoDB integration
+-----------------------------
+
+-mongose-library using to integrate server and database
+
+    npm i mongoose
+    
+server mdb integration
+---------------------------
+insert mongoose  -it is a library which is used for server mongodb(database) integration
+
+//server mongodb integration
+
+//state conection string via mongoose
+
+//define bank database model
+
+//export schema to use in another files
+
+ANGULAR SERVER INTEGRATION/FRONTEND INTEGRATION
+------------------------------------------------------------
+
